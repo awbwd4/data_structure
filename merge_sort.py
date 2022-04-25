@@ -10,6 +10,8 @@ def mergeSort(list_s):
 
     mid = int(length / 2)  # 분할 기준
 
+    print("mid : ", mid)
+
     left_nums = list_s[:mid]
     right_nums = list_s[mid:]
 
@@ -22,7 +24,9 @@ def mergeSort(list_s):
     idx_l = 0  # 왼쪽편 출발
     idx_r = 0  # 오른쪽편 출발
 
-    while idx_l < len(sorted_left) or idx_r < len(sorted_right):
+    while idx_l < len(sorted_left) or idx_r < len(
+        sorted_right
+    ):  # 합병하는 과정이며 또한 재귀의 종료조건이기도 하다.
 
         if idx_l == len(sorted_left):
             sorted_nums.append(sorted_right[idx_r])
@@ -54,7 +58,9 @@ def mergeSort(list_s):
 
 # nums = [5, 7, 9, 9, 3, 1, 2, 4, 4]
 
-nums = [4, 1, 9, 5]
+# nums = [4, 1, 9, 5]
+nums = [7, 3, 1, 5, 6, 4, 2]
+
 
 # print(mergeSort(nums))
 
