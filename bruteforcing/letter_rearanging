@@ -1,0 +1,21 @@
+data = input()
+result = []
+value = 0  # 숫자들 합계
+
+
+# 문자 하나씩 확인하기
+for x in data:
+    # 알파벳인 경우 결과 리스트에 삽입
+    if x.isalpha():
+        result.append(x)
+    else:
+        value += int(x)
+
+# 알파벳 소트
+result.sort()  # 문자열 리스트도 sort() 함수로 소팅 가능
+
+if value != 0:
+    result.append(str(value))
+
+print(result)  # 리스트로 출력해줌
+print("".join(result))  # 문자열들을 다 연결해서 출력해줌.
