@@ -1,0 +1,38 @@
+# n, m을 공백을 기준으로 구분하여 입력 받기
+from re import X
+
+
+n, m = map(int, input().split())
+
+# 2차원 리스트의 맵 정보 입력받기
+graph = []
+for i in range(n):  # n으로 받은 행의 수만큼 반복
+    graph.append(list(map(int, input().split())))  # 이중리스트 처리됨
+
+
+def dfs(graph, x, y):
+    # 종료조건 n = 4, m = 5
+    if x <= -1 or x >= n or y <= -1 or y >= m:  # 0부터 시작하므로 1씩 줄여준다.
+        return
+    # 진행 조건, 현재 칸이 0일 경우 해당 칸을 1로 바꾸고 주변을 탐색한다.
+    if graph[x][y] == 0:
+        print("graph[%d][%d]" % (x, y))
+        graph[x][y] = 1  # 방문표시, 1로 바꾼다. 0,4
+        dfs(graph, x, y + 1)  # 우 0  , 5
+        dfs(graph, x, y - 1)  # 좌 0  , 3
+        dfs(graph, x - 1, y)  # 상 -1 , 4
+        dfs(graph, x + 1, y)  # 하 1  , 4
+        return True
+    # 더 이상 갈곳이 없다면 false
+    return False
+
+
+count = 0
+for i in range(0, n):
+    print("i : [%d]", i)
+    for j in range(0, m):
+        print(" j : [%d]", j)
+        if dfs(graph, i, j):
+            count += 1
+
+print(count)
