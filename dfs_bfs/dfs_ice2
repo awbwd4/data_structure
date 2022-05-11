@@ -1,7 +1,4 @@
 # n, m을 공백을 기준으로 구분하여 입력 받기
-from re import X
-
-
 n, m = map(int, input().split())
 
 # 2차원 리스트의 맵 정보 입력받기
@@ -35,4 +32,4 @@ for i in range(0, n):
         if dfs(graph, i, j):
             count += 1
 
-print(count)
+print

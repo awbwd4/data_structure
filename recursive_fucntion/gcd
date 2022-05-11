@@ -7,7 +7,7 @@ def gcd(a, b):
     if a % b == 0:
         return b
     else:
-        return gcd(b, a % b)
+        return gcd(b, a % b) # 여기서 리턴을 꼭 해줘야하나?
 
 
 print(gcd(192, 162))
