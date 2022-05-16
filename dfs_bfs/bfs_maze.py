@@ -47,11 +47,13 @@ def bfs():
             na = a + da[i]
             nb = b + db[i]
             print("  ", na, " ", nb)
+
             # 이동하지 않는 조건
             if graph[na][nb] == 0:
                 print("         1.필터링된 na nb : ", na, " ", nb)
-                continue
+                continuegit
             if na < 0 or na >= n or nb < 0 or nb >= m:
+                # graph[0][3]
                 print("         2.필터링된 na nb : ", na, " ", nb)
                 continue
             if visited[na][nb] == True:
