@@ -29,8 +29,10 @@ class LinkedList:
     def print_all(self):
         cur = self.head
         # print(cur.data)
-        while cur.next is not None:
+        while True:
             print(cur.data)
+            if cur.next is None:
+                break
             cur = cur.next
 
     # 특정 위치의 노드 리턴하기.
@@ -61,7 +63,7 @@ class LinkedList:
             cur.next = insert_node
             insert_node.next = temp
 
-    def add_node1(self, index, value):
+    def add_node2(self, index, value):
         new_node = Node(value)
         # 맨 앞에 넣을 경우
         if index == 0:
@@ -91,6 +93,15 @@ class LinkedList:
                     prev = cur  # 삭제될 노드의 직전 노드
             prev.next = cur.next
 
+    # 중간의 노드 제거하기
+    def delete_node1(self, index):
+        pass
+        # 삭제하려는게 첫번째일 경우
+        if index == 0:
+            self.head = self.head.next
+        deleted_node = self.get_node(index)
+        self.get_node(index - 1).next = deleted_node.next
+
 
 list = LinkedList(1)
 
@@ -99,4 +110,12 @@ list.append(3)
 list.append(4)
 list.append(5)
 
+list.print_all()
+
+print("=================")
+print(list.get_node(3).data)
+list.add_node2(3, 6)
+list.print_all()
+print("=================")
+list.delete_node(3)
 list.print_all()
