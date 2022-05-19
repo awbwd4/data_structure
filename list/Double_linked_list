@@ -1,0 +1,200 @@
+# 노드 생성하기
+from email import header
+
+
+class Node:
+    def __init__(self, data):
+        self.prev = None
+        self.data = data
+        self.next = None
+
+
+class DoubleLinkedList:
+
+    size = 0
+
+    # 생성자.
+    # 링크드리스트 객체가 최초 생성될 시 head에 첫 노드가 들어간다.
+    def __init__(self, data):
+        self.head = Node(data)
+        self.tail = self.head
+        self.size = 1
+        # 이중 연결 리스트이므로 tail도 있다.
+        # 처음에 tail은 head와 동일함.
+
+    def append(self, data):
+        if self.head is None:
+            self.head = data
+            self.tail = data
+        else:
+            cur = self.head
+            while cur.next is not None:
+                cur = cur.next  # 맨 끝 노드까지 이동.
+            cur.next = Node(data)  # 맨 끝 노드의 넥스트 포인터에 새로운 노드를 추가해줌.
+            cur.next.prev = cur  # 새로 만든 노드는 prev가 None이므로, 이전 노드를 가리키도록 해줘야함.
+            self.tail = cur.next  # 리스트의 마지막 꼬리부분.
+            self.size += 1
+
+    def print_all(self):
+        if self.head is None:
+            print("리스트 없음")
+            return
+        else:
+            cur = self.head
+            while True:
+                print(cur.data)
+                if cur.next is None:
+                    break
+                # 현재노드의 데이터 출력을 다 끝낸 뒤에
+                # 이 노드가 마지막인지 확인 하고
+                # 마지막이 아니라면 다음 노드로 넘어가도록해야함.
+                cur = cur.next
+            print("size : ", self.size)
+
+    # head에서부터 특정 위치의 노드 리턴하기
+
+    def get_node_from_head_idx(self, index):
+        if self.head is None:
+            return
+        cnt = 0
+        cur = self.head
+        while cnt < index:
+            cnt += 1
+            cur = cur.next
+            if cur is None:
+                return None
+        return cur
+
+    # tail에서부터 특정 위치의 노드 리턴하기
+    def get_node_from_tail_idx(self, index):
+        if self.head is None:
+            return
+        cnt = 0
+        cur = self.tail
+        while cnt != index:
+            cnt += 1
+            cur = cur.prev
+            if cur is None:
+                return None
+        return cur
+
+    # 인덱스 탐색 :  노드 중간에 삽입하기
+    def insert_node_idx(self, index, data):
+        insert = Node(data)
+        if index == 0:
+            insert.next = self.head
+            self.head = insert
+            self.size += 1
+        elif self.head is None:
+            self.head = Node(data)
+            self.tail = self.head
+            self.size = 1
+        else:
+            cur = self.get_node_from_head_idx(index)
+            print(insert.data)
+            print(cur.data)
+            print(cur.prev)
+            insert.prev = cur.prev
+            print(insert.prev)
+            print(cur)
+            insert.next = cur
+            print(insert.next)
+            # 삽입될 노드의 양측 포인터 처리
+            print(insert)
+            cur.prev = insert
+            print(cur.prev)
+            # 현재 해당 위치에 있는 노드의 prev 포인터 변경
+            self.print_all()
+
+    # 인덱스 탐색 :  노드 중간에 삽입하기
+    def insert_node2_idx(self, index, data):
+        insert = Node(data)
+        if index == 0:
+            insert.next = self.head
+            self.head = insert
+        elif self.head is None:
+            self.head = Node(data)
+            self.tail = self.head
+        else:
+            before = self.get_node_from_head_idx(index - 1)
+            insert.next = before.next
+            insert.prev = before
+            # 삽입될 노드의 양측 포인터 처리
+            before.next = insert
+            # 현재 해당 위치에 있는 노드의 prev 포인터 변경
+        self.size += 1
+        self.print_all()
+
+    # 인덱스 탐색 : 노드 중간에 삽입하기 - 뒤에서부터
+
+    # 인덱스 탐색 : 노드 삭제하기
+    def delete_idx(self, index):
+        if self.head is None:
+            return
+        if index == 0:
+            self.head = self.head.next
+        else:
+            delete = self.get_node_from_head_idx(index)
+            self.get_node_from_head_idx(index - 1).next = delete.next
+            self.get_node_from_head_idx(index + 1).prev = delete.prev
+        self.print_all()
+
+    # 데이터 탐색 : 특정위치의
+    def get_node_from_head_data(self, data):
+        if self.head is None:
+            return
+        else:
+            cur = self.head
+            while cur.next is not None:
+                if cur.data == data:
+                    return cur
+                cur = cur.next
+            if cur.data is None:
+                return
+
+    # 데이터 탐색 : 인덱스, 절반으로 나누기.
+    def searchNode(self, index):
+        cnt = 0
+        if self.head is None:
+            return
+        if index == 0:
+            return self.head
+        if index == self.size - 1:
+            return self.tail
+        if index <= self.size // 2:
+            # head부터 탐색
+            cur = self.head
+            while cnt < index:
+                cnt += 1
+                cur = cur.next
+        else:
+            # tail부터 탐색
+            cur = self.tail
+            cnt = self.size - 1
+            while cnt > index:
+                cnt -= 1
+                cur = cur.prev
+        return cur
+
+
+list = DoubleLinkedList(0)
+
+list.append(1)
+list.append(2)
+list.append(3)
+list.append(4)
+list.append(5)
+
+
+# print(list.get_node_from_head_idx(10))
+# print(list.get_node_from_head_idx(10).data)
+# print(list.get_node_from_tail().data)
+
+
+list.insert_node2_idx(3, 9)
+print(list.searchNode(6).data)
+# list.delete(3)
+# print(list.get_node_from_head_data(100).data)
+
+
+# list.print_all()
