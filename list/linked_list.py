@@ -119,3 +119,6 @@ list.print_all()
 print("=================")
 list.delete_node(20)
 list.print_all()
+
+print("낄낄")
+print("빡세게 하소오 :)")

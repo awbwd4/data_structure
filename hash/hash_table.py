@@ -1,6 +1,3 @@
-from email.utils import getaddresses
-
-
 class HashTable:
     size = 0
     key = 0
