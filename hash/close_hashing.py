@@ -11,7 +11,8 @@ class HashTable:
 
     def __init__(self, table_size):
         self.size = table_size
-        self.hash_table = [Node(None, None) for _ in range(self.size)]
+        self.hash_table = [[] for _ in range(self.size)]
+        # self.hash_table = [Node(None, None) for _ in range(self.size)]
         # key, value, next
 
     def getKey(self, data):
@@ -27,10 +28,16 @@ class HashTable:
         hash_address = self.hashFunction(myKey)
         return hash_address
 
+    def save(self, key, value):
+        hash_address = self.getAddress(key)
+        self.hash_table[hash_address] = Node(key, value)
+        print(dir(self.hash_table[hash_address]))
+        print((self.hash_table[hash_address].__contains__))
+
     def saveData(self, key, value):
         hash_address = self.getAddress(key)
         # 해당 해쉬 주소에 데이터가 있을 경우
-        if self.hash_table[hash_address].key is not None:
+        if self.hash_table[hash_address] is not None:
             if self.hash_table[hash_address].key == key:
                 self.hash_table[hash_address] = value
                 print("saveData[%d - %d]" % (key, value))
@@ -97,9 +104,10 @@ class HashTable:
 
 h = HashTable(3)
 print(h.hash_table)
-h.saveData("hazel", "0102201")
-h.saveData("hazel1", "0102202")
-h.saveData("hazel2", "0102203")
-h.saveData("hazel3", "0102204")
+h.save("hazel", "0102201")
+# h.saveData("hazel", "0102201")
+# h.saveData("hazel1", "0102202")
+# h.saveData("hazel2", "0102203")
+# h.saveData("hazel3", "0102204")
 # result = h.searchData("hazel")
 # print(result.value)
