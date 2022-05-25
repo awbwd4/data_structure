@@ -61,6 +61,15 @@ class BST:
             return False
 
         # 해당 노드를 찾음, 삭제
+
+        # case 0 : 삭제할 노드가 헤드이며, 헤드만 있는 트리인 경우
+        if (
+            self.root == self.current_node
+            and self.current_node.right == None
+            and self.current_node.left
+        ):
+            self.root = None
+
         # case 1 : 삭제할 노드가 리프 노드인 경우
         if self.current_node.left == None and self.current_node.right == None:
             if value < self.parent.value:
