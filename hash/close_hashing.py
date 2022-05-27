@@ -32,7 +32,7 @@ class HashTable:
         hash_address = self.getAddress(key)
         self.hash_table[hash_address] = Node(key, value)
         print(dir(self.hash_table[hash_address]))
-        print((self.hash_table[hash_address].__contains__))
+        print((self.hash_table[hash_address]))
 
     def saveData(self, key, value):
         hash_address = self.getAddress(key)
