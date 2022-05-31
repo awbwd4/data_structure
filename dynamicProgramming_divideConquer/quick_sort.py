@@ -17,14 +17,23 @@ def quick_sort(list):
     print("pivot : ", pivot)
     print("right : ", right_list)
 
-    # merged_arr = left_list
-    # merged_arr.append(pivot)
+    merged_arr.extend(quick_sort(left_list))
+    merged_arr.append(pivot)
+    merged_arr.extend(quick_sort(right_list))
     # merged_arr += right_list
     # merged_arr = quick_sort(left_list)
     # # merged_arr.append(pivot)
     # merged_arr += quick_sort(right_list)
 
-    merged_arr = quick_sort(left_list) + quick_sort(right_list)
+    # for i in left_list:
+    #     merged_arr.append(i)
+
+    # merged_arr.append(pivot)
+
+    # for i in right_list:
+    #     merged_arr.append(i)
+
+    # merged_arr = quick_sort(left_list) + quick_sort(right_list)
 
     return merged_arr
 

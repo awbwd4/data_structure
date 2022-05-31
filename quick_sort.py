@@ -45,6 +45,6 @@ def quickSort(list, begin, end):
 list = [69, 10, 30, 2, 16, 8, 31, 22]
 
 
-quickSort(list, 0, 7)
+print(quickSort(list, 0, 7))
 
 print(list)
