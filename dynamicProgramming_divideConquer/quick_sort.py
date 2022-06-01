@@ -1,12 +1,12 @@
 def quick_sort(list):
-    if len(list) == 1:
-        return
+    if len(list) <= 1:
+        return list
 
     pivot = list[0]
 
     left_list = []
     right_list = []
-    merged_arr = []
+
     for i in range(1, len(list)):
         if list[i] < pivot:
             left_list.append(list[i])
@@ -17,9 +17,9 @@ def quick_sort(list):
     print("pivot : ", pivot)
     print("right : ", right_list)
 
-    merged_arr.extend(quick_sort(left_list))
-    merged_arr.append(pivot)
-    merged_arr.extend(quick_sort(right_list))
+    # merged_arr.extend(quick_sort(left_list))
+    # merged_arr.append(pivot)
+    # merged_arr.extend(quick_sort(right_list))
     # merged_arr += right_list
     # merged_arr = quick_sort(left_list)
     # # merged_arr.append(pivot)
@@ -35,7 +35,7 @@ def quick_sort(list):
 
     # merged_arr = quick_sort(left_list) + quick_sort(right_list)
 
-    return merged_arr
+    return quick_sort(left_list) + [pivot] + quick_sort(right_list)
 
 
 list = [4, 2, 1, 5, 7, 3, 9, 10]
