@@ -53,3 +53,11 @@ dq.popleft()
 dq.extend("you")
 
 print(dq)
+
+
+# 리스트x가 있을때
+# a.append(x)
+# a.extend(x)
+
+# append는 x를 그자체로 원소로 넣음
+# extend는 iterable의 각 항목들을 넣는다.
