@@ -1,13 +1,16 @@
 import random
 n = int(input())
 
-data_list = random.sample(range(100, n))
+array = random.sample(range(100),n)
+
+
+print(array)
 
 # n = int(input())
-array = list()
+# array = list()
 
-for i in range(n):
-    array.append(int(input()))
+# for i in range(n):
+#     array.append(int(input()))
 
 
 for i in range(len(array)-1):
